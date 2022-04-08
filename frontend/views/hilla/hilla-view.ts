@@ -8,25 +8,12 @@ import { View } from '../../views/view';
 
 @customElement('hilla-view')
 export class HillaView extends View {
-  name = '';
-
   connectedCallback() {
     super.connectedCallback();
-    this.classList.add('flex', 'p-m', 'gap-m', 'items-end');
+    this.classList.add('flex', 'p-m', 'gap-m', 'items-end','w-full');
   }
 
   render() {
-    return html`
-      <vaadin-text-field label="Your name" @value-changed=${this.nameChanged}></vaadin-text-field>
-      <vaadin-button @click=${this.sayHello}>Say hello</vaadin-button>
-    `;
-  }
-
-  nameChanged(e: CustomEvent) {
-    this.name = e.detail.value;
-  }
-
-  sayHello() {
-    Notification.show(`Hello ${this.name}`);
+    return html` <spread-sheet style="width: 100%; height: 500px"></spread-sheet>`;
   }
 }

@@ -1,32 +1,24 @@
 package com.example.application.views.flow;
 
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
+import java.io.IOException;
+
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.spreadsheet.Spreadsheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
 @PageTitle("Flow")
 @Route(value = "flow")
-@RouteAlias(value = "")
 public class FlowView extends HorizontalLayout {
 
-    private TextField name;
-    private Button sayHello;
+    private Spreadsheet spreadsheet;
 
-    public FlowView() {
-        name = new TextField("Your name");
-        sayHello = new Button("Say hello");
-        sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
-        });
-
-        setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, sayHello);
-
-        add(name, sayHello);
+    public FlowView() throws IOException {
+        setWidth("100%");
+        spreadsheet = new Spreadsheet(getClass().getResourceAsStream("empty.xlsx"));
+        spreadsheet.setWidth("100%");
+        spreadsheet.setHeight("500px");
+        add(spreadsheet);
     }
 
 }
